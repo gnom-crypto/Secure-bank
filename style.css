@@ -51,4 +51,31 @@ body {
     display: none;
 }
 
+/* style.css */
+.notification {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 1000;
+}
+
+.notification.show {
+    top: 20px;
+}
+
+.notification.success {
+    background: var(--success);
+    color: white;
+}
+
+.notification.error {
+    background: var(--error);
+    color: white;
+}
+
 /* Добавьте остальные стили для форм, кнопок, анимаций */
