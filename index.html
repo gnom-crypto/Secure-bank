@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Bank</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Форма входа -->
+        <div class="auth-form active" id="login-form">
+            <h1>🔒 Secure Bank</h1>
+            <input type="text" id="login-username" placeholder="Логин">
+            <input type="password" id="login-password" placeholder="Пароль">
+            <button onclick="login()">Войти</button>
+            <p>Нет аккаунта? <a href="#" onclick="showRegister()">Зарегистрироваться</a></p>
+        </div>
+
+        <!-- Форма регистрации -->
+        <div class="auth-form" id="register-form">
+            <h1>🛡️ Создать аккаунт</h1>
+            <input type="text" id="register-username" placeholder="Логин">
+            <input type="password" id="register-password" placeholder="Пароль">
+            <input type="number" id="initial-balance" placeholder="Начальный баланс">
+            <button onclick="register()">Создать аккаунт</button>
+            <p>Уже есть аккаунт? <a href="#" onclick="showLogin()">Войти</a></p>
+        </div>
+
+        <!-- Основной интерфейс -->
+        <div class="dashboard" id="dashboard">
+            <header>
+                <h2>👋 Привет, <span id="current-user"></span></h2>
+                <div class="balance-box">
+                    <span>Ваш баланс:</span>
+                    <div class="balance" id="balance">0 ₽</div>
+                </div>
+            </header>
+
+            <div class="actions">
+                <button class="action-btn" onclick="showTransferForm()">
+                    <i class="fas fa-exchange-alt"></i>
+                    Перевод
+                </button>
+                <button class="action-btn" onclick="showCheckForm()">
+                    <i class="fas fa-receipt"></i>
+                    Оплатить чек
+                </button>
+                <button class="action-btn" onclick="showSettings()">
+                    <i class="fas fa-cog"></i>
+                    Настройки
+                </button>
+            </div>
+
+            <!-- Формы операций -->
+            <div class="operation-form" id="transfer-form">
+                <h3>💸 Перевод средств</h3>
+                <input type="number" id="receiver-account" placeholder="Номер счета получателя">
+                <input type="number" id="amount" placeholder="Сумма">
+                <button onclick="performTransfer()">Перевести</button>
+            </div>
+
+            <div class="operation-form" id="check-form">
+                <h3>🧾 Оплата чека</h3>
+                <input type="number" id="check-number" placeholder="Номер чека">
+                <button onclick="payCheck()">Оплатить</button>
+            </div>
+
+            <!-- История операций -->
+            <div class="transactions">
+                <h3>📝 История операций</h3>
+                <div class="transactions-list" id="transactions-list"></div>
+            </div>
+
+            <!-- Настройки -->
+            <div class="settings-form" id="settings-form">
+                <h3>⚙️ Настройки</h3>
+                <div class="theme-switch">
+                    <span>Тема:</span>
+                    <button onclick="toggleTheme('light')">Светлая</button>
+                    <button onclick="toggleTheme('dark')">Темная</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
