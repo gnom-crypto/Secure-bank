@@ -90,4 +90,55 @@ function showNotification(text, type) {
     }, 100);
 }
 
+// script.js
+// ... предыдущий код ...
+
+function showRegister() {
+    document.getElementById('login-form').classList.remove('active');
+    document.getElementById('register-form').classList.add('active');
+}
+
+function showLogin() {
+    document.getElementById('register-form').classList.remove('active');
+    document.getElementById('login-form').classList.add('active');
+}
+
+function generateAccountNumber() {
+    return Math.floor(Math.random() * 9000000000) + 1000000000;
+}
+
+function register() {
+    const username = document.getElementById('register-username').value;
+    const password = document.getElementById('register-password').value;
+    const balance = parseFloat(document.getElementById('initial-balance').value) || 0;
+
+    if (!username || !password) {
+        showNotification('Заполните все поля!', 'error');
+        return;
+    }
+
+    const users = JSON.parse(localStorage.getItem('users'));
+    
+    if (users.some(u => u.username === username)) {
+        showNotification('Пользователь уже существует!', 'error');
+        return;
+    }
+
+    const newUser = {
+        username,
+        password,
+        balance,
+        accountNumber: generateAccountNumber(),
+        theme: 'light'
+    };
+
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+    
+    showNotification('Аккаунт успешно создан!', 'success');
+    showLogin();
+}
+
+// ... остальной код ...
+
 // Добавьте остальные функции для работы с UI и Local Storage
